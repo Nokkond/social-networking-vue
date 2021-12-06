@@ -1,0 +1,4 @@
+application/controllers/AuthControllerIntegrationTest.java
+ application.controllers.AuthControllerIntegrationTest
+application/controllers/AccountControllerIntegrationTest.java
+ application.controllers.AccountControllerIntegrationTest

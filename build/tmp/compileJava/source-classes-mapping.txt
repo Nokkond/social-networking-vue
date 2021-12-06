@@ -1,0 +1,247 @@
+application/models/dto/MessageDeleteDto.java
+ application.models.dto.MessageDeleteDto
+application/models/Language.java
+ application.models.Language
+application/models/Tag.java
+ application.models.Tag
+application/dao/mappers/MapperUtil.java
+ application.dao.mappers.MapperUtil
+application/dao/mappers/FileDescriptionMapper.java
+ application.dao.mappers.FileDescriptionMapper
+application/dao/DaoDialog.java
+ application.dao.DaoDialog
+application/configurations/SwaggerConfiguration.java
+ application.configurations.SwaggerConfiguration
+application/dao/DaoLike.java
+ application.dao.DaoLike
+application/security/JwtUser.java
+ application.security.JwtUser
+application/models/requests/AuthDtoRequest.java
+ application.models.requests.AuthDtoRequest
+application/dao/DaoTag.java
+ application.dao.DaoTag
+application/models/requests/ShiftEmailDtoRequest.java
+ application.models.requests.ShiftEmailDtoRequest
+application/dao/mappers/TagMapper.java
+ application.dao.mappers.TagMapper
+application/security/JwtTokenFilter.java
+ application.security.JwtTokenFilter
+application/dao/mappers/PersonMapper.java
+ application.dao.mappers.PersonMapper
+application/models/dto/NotificationDto.java
+ application.models.dto.NotificationDto
+application/models/requests/RecoverPassDtoRequest.java
+ application.models.requests.RecoverPassDtoRequest
+application/models/dto/CommentDto.java
+ application.models.dto.CommentDto
+application/security/JwtUserDetailsService.java
+ application.security.JwtUserDetailsService
+application/service/PlatformService.java
+ application.service.PlatformService
+application/models/dto/CommentAuthorDto.java
+ application.models.dto.CommentAuthorDto
+application/exceptions/CustomAccessDeniedHandler.java
+ application.exceptions.CustomAccessDeniedHandler
+application/models/requests/MessageSendDtoRequest.java
+ application.models.requests.MessageSendDtoRequest
+application/security/JwtConfigurer.java
+ application.security.JwtConfigurer
+application/exceptions/ErrorResponse.java
+ application.exceptions.ErrorResponse
+application/exceptions/EmailAlreadyExistsException.java
+ application.exceptions.EmailAlreadyExistsException
+application/models/requests/SetPasswordDtoRequest.java
+ application.models.requests.SetPasswordDtoRequest
+application/dao/DaoPerson.java
+ application.dao.DaoPerson
+application/dao/mappers/NotificationsSettingsMapper.java
+ application.dao.mappers.NotificationsSettingsMapper
+application/models/requests/PersonSettingsDtoRequest.java
+ application.models.requests.PersonSettingsDtoRequest
+application/service/FriendsService.java
+ application.service.FriendsService
+application/exceptions/GlobalExceptionHandler.java
+ application.exceptions.GlobalExceptionHandler
+application/models/dto/PostDto.java
+ application.models.dto.PostDto
+application/models/NotificationType.java
+ application.models.NotificationType
+application/dao/mappers/DialogMapper.java
+ application.dao.mappers.DialogMapper
+application/controllers/DefaultController.java
+ application.controllers.DefaultController
+application/controllers/TagController.java
+ application.controllers.TagController
+application/dao/mappers/MessageMapper.java
+ application.dao.mappers.MessageMapper
+application/models/Message.java
+ application.models.Message
+application/service/DropboxService.java
+ application.service.DropboxService
+application/controllers/StorageController.java
+ application.controllers.StorageController
+application/models/Person.java
+ application.models.Person
+application/service/ScheduledService.java
+ application.service.ScheduledService
+application/models/Notification.java
+ application.models.Notification
+application/models/requests/LikeRequest.java
+ application.models.requests.LikeRequest
+application/dao/DaoFile.java
+ application.dao.DaoFile
+application/dao/mappers/LikeMapper.java
+ application.dao.mappers.LikeMapper
+application/service/PostsService.java
+ application.service.PostsService
+application/controllers/LikeController.java
+ application.controllers.LikeController
+application/models/FileDescription.java
+ application.models.FileDescription
+application/controllers/PlatformController.java
+ application.controllers.PlatformController
+application/dao/DaoCity.java
+ application.dao.DaoCity
+application/models/Permission.java
+ application.models.Permission
+application/controllers/AuthController.java
+ application.controllers.AuthController
+application/exceptions/Error.java
+ application.exceptions.Error
+application/dao/mappers/PathMapper.java
+ application.dao.mappers.PathMapper
+application/models/dto/UserIdsDto.java
+ application.models.dto.UserIdsDto
+application/controllers/PostsController.java
+ application.controllers.PostsController
+application/models/Role.java
+ application.models.Role
+application/service/DialogsService.java
+ application.service.DialogsService
+application/exceptions/PasswordsNotEqualsException.java
+ application.exceptions.PasswordsNotEqualsException
+application/models/User.java
+ application.models.User
+application/exceptions/JwtAuthenticationException.java
+ application.exceptions.JwtAuthenticationException
+application/dao/mappers/CountryMapper.java
+ application.dao.mappers.CountryMapper
+application/models/City.java
+ application.models.City
+application/models/requests/TagRequest.java
+ application.models.requests.TagRequest
+application/configurations/SecurityConfig.java
+ application.configurations.SecurityConfig
+application/models/dto/NotificationsSettingsDto.java
+ application.models.dto.NotificationsSettingsDto
+application/models/requests/FriendsDtoRequest.java
+ application.models.requests.FriendsDtoRequest
+application/models/dto/InviteLinkDto.java
+ application.models.dto.InviteLinkDto
+application/models/requests/NotificationRequest.java
+ application.models.requests.NotificationRequest
+application/models/dto/FileDescriptionDto.java
+ application.models.dto.FileDescriptionDto
+application/App.java
+ application.App
+application/models/requests/CommentRequest.java
+ application.models.requests.CommentRequest
+application/service/StorageService.java
+ application.service.StorageService
+application/models/requests/DialogCreateDtoRequest.java
+ application.models.requests.DialogCreateDtoRequest
+application/controllers/DialogsController.java
+ application.controllers.DialogsController
+application/models/dto/DialogIdDto.java
+ application.models.dto.DialogIdDto
+application/models/requests/PostRequest.java
+ application.models.requests.PostRequest
+application/dao/mappers/PostCommentMapper.java
+ application.dao.mappers.PostCommentMapper
+application/models/NotificationSettingType.java
+ application.models.NotificationSettingType
+application/configurations/MvcConfig.java
+ application.configurations.MvcConfig
+application/controllers/NotificationController.java
+ application.controllers.NotificationController
+application/models/Country.java
+ application.models.Country
+application/dao/DaoPost.java
+ application.dao.DaoPost
+application/models/dto/PersonDto.java
+ application.models.dto.PersonDto
+application/models/dto/LikeResponseDto.java
+ application.models.dto.LikeResponseDto
+application/service/AuthService.java
+ application.service.AuthService
+application/controllers/FriendsController.java
+ application.controllers.FriendsController
+application/models/Like.java
+ application.models.Like
+application/dao/DaoMessage.java
+ application.dao.DaoMessage
+application/models/PermissionMessagesType.java
+ application.models.PermissionMessagesType
+application/models/requests/RegistrationDtoRequest.java
+ application.models.requests.RegistrationDtoRequest
+application/models/Dialog.java
+ application.models.Dialog
+application/security/JwtTokenProvider.java
+ application.security.JwtTokenProvider
+application/service/AccountService.java
+ application.service.AccountService
+application/exceptions/UserIsBlockedException.java
+ application.exceptions.UserIsBlockedException
+application/dao/DaoNotification.java
+ application.dao.DaoNotification
+ application.dao.DaoNotification$1
+ application.dao.DaoNotification$2
+ application.dao.DaoNotification$3
+application/models/dto/MessageDto.java
+ application.models.dto.MessageDto
+application/controllers/ProfileController.java
+ application.controllers.ProfileController
+application/models/Comment.java
+ application.models.Comment
+application/models/FriendshipStatus.java
+ application.models.FriendshipStatus
+application/models/responses/GeneralListResponse.java
+ application.models.responses.GeneralListResponse
+application/models/responses/GeneralResponse.java
+ application.models.responses.GeneralResponse
+application/controllers/FeedsController.java
+ application.controllers.FeedsController
+application/service/FeedsService.java
+ application.service.FeedsService
+application/dao/DaoComment.java
+ application.dao.DaoComment
+application/service/LogRewritePolicy.java
+ application.service.LogRewritePolicy
+application/models/dto/DialogDto.java
+ application.models.dto.DialogDto
+application/models/dto/MessageResponseDto.java
+ application.models.dto.MessageResponseDto
+application/service/NotificationService.java
+ application.service.NotificationService
+application/dao/mappers/NotificationMapper.java
+ application.dao.mappers.NotificationMapper
+application/models/Post.java
+ application.models.Post
+application/models/dto/DialogsActivityResponseDto.java
+ application.models.dto.DialogsActivityResponseDto
+application/dao/mappers/PostMapper.java
+ application.dao.mappers.PostMapper
+application/models/dto/PersonDialogsDto.java
+ application.models.dto.PersonDialogsDto
+application/service/ProfileService.java
+ application.service.ProfileService
+application/models/dto/UnreadedCountDto.java
+ application.models.dto.UnreadedCountDto
+application/dao/mappers/CityMapper.java
+ application.dao.mappers.CityMapper
+application/security/RestAuthenticationEntryPoint.java
+ application.security.RestAuthenticationEntryPoint
+application/models/ReadStatus.java
+ application.models.ReadStatus
+application/controllers/AccountController.java
+ application.controllers.AccountController
