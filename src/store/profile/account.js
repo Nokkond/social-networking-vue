@@ -58,12 +58,10 @@ export default {
       }).then(response => {}).catch(error => {
       })
     },
-    async passwordSet({
-      rootState
-    }, password) {
+    async passwordSet({ rootState },play) {
       let data = {
-        token: rootState.auth.api.token,
-        password
+        token: play[0],
+        password: play[1],
       }
       await axios({
         url: 'account/password/set',

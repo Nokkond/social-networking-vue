@@ -31,7 +31,7 @@ export default {
         return
       }
 
-      this.passwordSet(this.passwordTwo).then(() => {
+      this.passwordSet([this.$route.query.code,this.passwordTwo]).then(() => {
         this.$router.push({ name: 'ChangePasswordSuccess' })
       })
     }

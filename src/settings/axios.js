@@ -8,14 +8,15 @@ axios.defaults.withCredentials = true;
 switch (NODE_ENV) {
   case 'development':
     axios.defaults.baseURL =  'http://localhost:8086/api/v1/';
-    // axios.defaults.baseURL =  'https://java-16-pro-group.herokuapp.com/api/v1/';
+    //axios.defaults.baseURL =  'https://java-16-pro-group.herokuapp.com/api/v1/';
     break;
     case 'production':
-    // axios.defaults.baseURL =  'https://java-16-pro-group.herokuapp.com/api/v1/';
+    //axios.defaults.baseURL =  'https://java-16-pro-group.herokuapp.com/api/v1/';
     axios.defaults.baseURL =  'http://localhost:8086/api/v1/';
     break;
   default:
-    axios.defaults.baseURL =  'https://virtserver.swaggerhub.com/andrewleykin/social/1.0.4/api/v1/';
+    axios.defaults.baseURL =  'https://java-16-pro-group.herokuapp.com/api/v1/';
+    //axios.defaults.baseURL =  'https://virtserver.swaggerhub.com/andrewleykin/social/1.0.4/api/v1/';
 }
 
 const token = localStorage.getItem('user-token')
