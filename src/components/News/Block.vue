@@ -4,8 +4,9 @@
     template(v-else)
       template(v-if="!admin")
         .edit
-          .edit__icon(v-if="deleted" @click="deleteNews")
-            simple-svg(:filepath="'/static/img/delete-news.svg'")
+          .edit__icon
+            .button(v-confirm="{loader: true, ok: deleteNews, cancel: doNothing,message: 'Вы точно хотите удалить этот пост?'}")
+              simple-svg(:filepath="'/static/img/delete-news.svg'")
           .edit__icon(v-if="edit" @click="toggleEditNews")
             simple-svg(:filepath="'/static/img/edit.svg'")
       template(v-else)
@@ -123,12 +124,19 @@ export default {
     toggleEditNews() {
       this.isEditNews = !this.isEditNews
     },
-    deleteNews() {
+    deleteNews(dialog) {
       this.deleteFeeds({
         id: this.getInfo.id,
         post_id: this.info.id,
         route: this.$route.name
       })
+      dialog.close()
+    },
+    makeAdmin() {
+      //deleteNews()
+    },
+    doNothing: function() {
+      // Do nothing or some other stuffs
     }
   },
   mounted() {
@@ -326,5 +334,17 @@ export default {
   &+& {
     margin-left: 30px;
   }
+}
+.dg-btn--ok {
+  border-color: eucalypt;
+  color: eucalypt;
+}
+.dg-btn--cancel {
+  border-color: eucalypt;
+  background-color: eucalypt;
+}
+
+.dg-btn-loader .dg-circle {
+  background-color: eucalypt;
 }
 </style>

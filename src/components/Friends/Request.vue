@@ -37,10 +37,11 @@ export default {
 .friends-application {
   background: #fff;
   box-shadow: standart-boxshadow;
-  padding: 20px;
+  padding: 5px 10px 5px;
   width: 100%;
   margin: 16px 0 20px;
   max-width: calc(50% - 20px);
+  min-width: 300px;
 }
 
 .friends-application__pic {
@@ -71,6 +72,7 @@ export default {
   align-items: center;
   display: flex;
   justify-content space-between
+  padding: 5px 0px 5px;
 }
 
 .friends-application__item:not(:last-child) {

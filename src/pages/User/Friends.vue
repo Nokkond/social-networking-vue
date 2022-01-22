@@ -15,7 +15,7 @@
         h2.friends__title Заявок в друзья нет
       template(v-else)
         h2.friends__title Заявки в друзья
-        friends-request(v-for="info in userFriends.request" :key="info.id" :info="info")
+        friends-request()
 
     .inner-page__aside
       friends-possible
