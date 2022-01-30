@@ -16,6 +16,9 @@ export default {
     setStatus: (s, status) => s.status = status
   },
   actions: {
+    deleteUserToken() {
+      localStorage.setItem('user-token', null);
+    },
     async register({
       dispatch
     }, user) {

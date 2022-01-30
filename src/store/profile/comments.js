@@ -36,6 +36,11 @@ export default {
         }
       }).then(() => {
         dispatch('commentsById', payload.post_id)
+          // dispatch('users/info/apiWall', {
+          //   id: payload.id
+          // }, {
+          //   root: true
+          // })
       }).catch(() => {})
     },
     async editComment({
@@ -75,8 +80,8 @@ export default {
       dispatch
     }, payload) {
       console.log("TCL: payload", payload)
-      payload.edit 
-        ? await dispatch('editComment', payload) 
+      payload.edit
+        ? await dispatch('editComment', payload)
         : await dispatch('newComment', payload)
     }
   }

@@ -3,7 +3,7 @@
     add-form(v-if="isEditNews" :info="info" edit :deffered="deffered" @submit-complete="toggleEditNews")
     template(v-else)
       template(v-if="!admin")
-        .edit
+        .edit(v-if="info.author.me")
           .edit__icon
             .button(v-confirm="{loader: true, ok: deleteNews, cancel: doNothing,message: 'Вы точно хотите удалить этот пост?'}")
               simple-svg(:filepath="'/static/img/delete-news.svg'")

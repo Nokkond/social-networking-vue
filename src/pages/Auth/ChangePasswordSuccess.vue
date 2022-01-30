@@ -4,8 +4,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'ForgotSuccess'
+    name: 'ForgotSuccess',
+    methods: {
+      ...mapActions('auth/api', ['deleteUserToken']),
+    },
+    created() {
+      this.deleteUserToken();
+    }
 }
 </script>
 
