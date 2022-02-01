@@ -30,6 +30,14 @@ export default {
         exact: true,
         icon: 'news',
         text: 'Новости'
+      },
+      {
+        link: {
+          name: 'Statistics'
+        },
+        exact: true,
+        icon: 'statistics',
+        text: 'Статистика'
       }
     ],
     admin: [{

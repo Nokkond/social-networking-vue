@@ -174,6 +174,21 @@ export default {
         console.log(error)
       })
     },
+    async apiGetStatistics({ commit }, payload) {
+      let query = []
+      payload && Object.keys(payload).map(el => {
+        payload[el] && query.push(`${el}=${payload[el]}`)
+      })
+      await axios({
+        url: `statistics/?${query.join('&')}`,
+        method: 'GET'
+      }).then(response => {
+        commit('setResult', {
+          id: 'statistics',
+          value: response.data.data,
+        })
+      }).catch(error => {console.log(error)})
+    },
     async apiRequestFriends({
       commit
     }, payload) {

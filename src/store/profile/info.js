@@ -32,6 +32,7 @@ export default {
         commit('setInfo', response.data.data)
       }).catch(error => {})
     },
+
     async apiChangeInfo({
       commit,
       dispatch

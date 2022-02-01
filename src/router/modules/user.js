@@ -80,5 +80,14 @@ export default [{
       title: 'Уведомления'
     },
     component: () => import('@/pages/User/Push.vue')
+  },
+  {
+    path: '/statistics',
+    name: 'Statistics',
+    meta: {
+      layout: 'main',
+      title: 'Статистика'
+    },
+    component: () => import('@/pages/User/Statistics.vue')
   }
 ]

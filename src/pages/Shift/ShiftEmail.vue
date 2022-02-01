@@ -18,6 +18,7 @@ import { required, email, numeric } from 'vuelidate/lib/validators'
 import NumberField from '@/components/FormElements/NumberField'
 import EmailField from '@/components/FormElements/EmailField'
 import store from '@/store'
+import axios from 'axios'
 
 const isCode = value => +value === store.state.code
 
@@ -43,6 +44,8 @@ export default {
         return
       }
       this.changeEmail({ email: this.email }).then(() => {
+        localStorage.removeItem('user-token')
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('user-token')
         this.$router.push({ name: 'ShiftEmailSuccess' })
       })
     }
