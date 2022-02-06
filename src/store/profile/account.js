@@ -42,6 +42,13 @@ export default {
     setNotificationsSettings: (s, notifications) => s.notifications.map(el => el.enable = notifications.find(n => n.type === el.type).enable)
   },
   actions: {
+    async accountRecovery({}) {
+      await axios({
+        url: 'users/meRecover',
+        method: 'PUT'
+      }).then(response => {}).catch(error => {
+      })
+    },
     async passwordRecovery({}, email) {
       await axios({
         url: 'account/password/recovery',
