@@ -63,6 +63,7 @@ export default {
     isPlaning: false,
     planingTime: new Date(),
     componentKey: 0,
+    offset: 0,
     attrs: [
       {
         key: 'weekends',

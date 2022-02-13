@@ -24,6 +24,7 @@ export default new Vuex.Store({
   },
   getters: {
     getCode: s => s.code
+    //getIsDeleted: is_deleted => s.is_deleted
   },
   actions: {},
   mutations: {},

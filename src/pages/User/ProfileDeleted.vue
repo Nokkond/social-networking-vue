@@ -1,5 +1,5 @@
 <template lang="pug">
-  button-hover(@click.native="accountRecovery()") Восстановить аккаунт
+  button-hover(@click.native="accountRecovery().then(r => pushRecover()); ") Восстановить аккаунт
   //modal(v-model="modalShow")
   //  p(v-if="modalText") {{modalText}}
   //  template(slot="actions")
@@ -23,10 +23,14 @@ export default {
     //is_deleted: false
   }),
   methods:{
-    ...mapActions('profile/account',['accountRecovery'])
+    ...mapActions('profile/info', ['apiInfo']),
+    ...mapActions('profile/account',['accountRecovery']),
+    pushRecover(){
+      this.apiInfo();
+    }
   },
   created() {
-    if (this.getInfo) this.apiWall({ id: this.getInfo.id })
+
   }
 }
 </script>

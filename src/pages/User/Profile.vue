@@ -1,8 +1,8 @@
 <template lang="pug">
   .div
-    .profile.inner-page(v-if='is_deleted===true')
+    .profile.inner-page(v-if='getInfo.is_deleted===true')
       profile-deleted
-    .profile.inner-page(v-if='is_deleted===false')
+    .profile.inner-page(v-if='getInfo.is_deleted===false')
       .inner-page__main
         .profile__info
           profile-info(me online :info="getInfo")
@@ -14,6 +14,11 @@
             news-add
           .profile__news-list
             news-block(edit deleted :deffered="activeTab === 'queue'" v-for="news in activeWall" :key="news.id" :info="news")
+            pagination(
+              v-model="page"
+              :count="getTotalFeeds"
+              :per-page="feedsPerPage"
+            )
       .inner-page__aside
         friends-possible
 </template>
@@ -39,7 +44,7 @@ export default {
       return this.getWall.filter(el => el.type === this.activeTab)
     },
     deletedCheck(){
-      this.is_deleted = getInfo.is_deleted;
+      return this.getInfo.is_deleted;
     }
   },
   methods: {

@@ -32,7 +32,8 @@ export default {
   data() {
     return {
       page: 1,
-      feedsPerPage: 3
+      feedsPerPage: 5,
+      offset: 0
     };
   },
   computed: {
@@ -42,11 +43,14 @@ export default {
   methods: {
     ...mapActions('profile/feeds', ['apiFeeds'])
   },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      vm.apiFeeds()
-    })
+  created() {
+    this.apiFeeds({offset: 0})
   },
+  // beforeRouteEnter(to, from, next) {
+  //   next(vm => {
+  //     vm.apiFeeds({offset: 0})
+  //   })
+  // },
   watch: {
     page() {
       this.apiFeeds();

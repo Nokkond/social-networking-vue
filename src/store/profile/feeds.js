@@ -29,7 +29,7 @@ export default {
         payload[el] && query.push(`${el}=${payload[el]}`)
       })
       await axios({
-        url: `feeds?${query.join('&')}itemPerPage=5`,
+        url: `feeds?${query.join('&')}&itemPerPage=5`,
         method: 'GET'
       }).then(response => {
         console.log("TCL: apiFeeds -> response", response)
@@ -61,7 +61,7 @@ export default {
         data: {
           title: payload.title,
           post_text: payload.post_text,
-          tags: payload.tags
+          tags: payload.tags,
         }
       }).then(response => {
         if (payload.edit) {
@@ -70,7 +70,7 @@ export default {
           })
         } else {
           payload.route === 'News' ?
-            dispatch('apiFeeds') :
+            dispatch('apiFeeds',{offset: 1}) :
             dispatch('users/info/apiWall', {
               id: payload.id
             }, {
@@ -85,7 +85,9 @@ export default {
         method: 'DELETE'
       }).then(response => {
         payload.route === 'News' ?
-          dispatch('apiFeeds') :
+          dispatch('apiFeeds',{
+            offset: 1
+          }) :
           dispatch('users/info/apiWall', {
             id: payload.id
           }, {

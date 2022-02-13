@@ -16,6 +16,8 @@
 
 <script>
 
+import { mapActions } from 'vuex'
+
 const MAX_PAGES = 20;
 
 export default {
@@ -41,10 +43,14 @@ export default {
     },
   },
   methods: {
+    ...mapActions('profile/feeds', ['apiFeeds']),
+
+
     paginate(page) {
-      if (page && page <= this.pages) {
-        this.$emit('paginate', page);
-      }
+      // if (page && page <= this.pages) {
+      //   this.$emit('paginate', page);
+      // }
+      this.apiFeeds({offset: (page-1)*5})
     },
   },
 };
@@ -59,6 +65,14 @@ export default {
 }
 .pagination__item {
   margin-right 16px
+}
+.pagination__default {
+  color red
+  background white
+}
+.pagination__display-none {
+  color red
+  background white
 }
 .pagination__link {
   display flex

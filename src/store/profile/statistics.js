@@ -6,9 +6,8 @@ export default {
     result: {
       posts: [],
       likes: [],
-      dislikes: [],
-      views: [],
-      first_publication: []
+      comments: [],
+      users: []
     }
   },
   getters: {
