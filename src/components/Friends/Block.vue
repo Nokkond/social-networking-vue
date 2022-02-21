@@ -32,7 +32,7 @@
           simple-svg(:filepath="'/static/img/friend-request.svg'")
         .friends-block__actions-block.cancel-request(v-tooltip.bottom="'Отменить запрос в друзья'" @click="apiCancelFriendRequest(info.id)" v-else-if="info.is_friend === 'REQUEST_SENT'")
           simple-svg(:filepath="'/static/img/friend-request.svg'")
-        .friends-block__actions-block.add(v-tooltip.bottom="'Отправить запрос в друзья'" @click="apiAddFriends(info.id)" v-else-if="!info.is_blocked && !info.is_you_blocked")
+        //.friends-block__actions-block.add(v-tooltip.bottom="'Отправить запрос в друзья'" @click="apiAddFriends(info.id)" v-else-if="!info.is_blocked && !info.is_you_blocked")
           simple-svg(:filepath="'/static/img/friend-add.svg'")
         .friends-block__actions-block.add-blocked(v-tooltip.bottom="'Вы заблокированы'" v-else-if="!info.is_blocked && info.is_you_blocked")
           simple-svg(:filepath="'/static/img/friend-add.svg'")

@@ -134,6 +134,7 @@ export default {
   },
   methods: {
     ...mapActions('profile/feeds', ['actionsFeed']),
+    ...mapActions('profile/feeds', ['apiFeeds']),
     onPlaning() {
       this.isPlaning = true
       this.submitForm()
@@ -164,7 +165,8 @@ export default {
             hours: this.time.substring(0, 2)
           }).valueOf()
       }).then(() => {
-        this.$emit('submit-complete')
+        //this.apiFeeds({offset: 0});
+        this.$emit('submit-complete');
       })
     },
     openLinkMenu(attrs) {

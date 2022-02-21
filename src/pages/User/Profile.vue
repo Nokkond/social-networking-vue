@@ -14,11 +14,11 @@
             news-add
           .profile__news-list
             news-block(edit deleted :deffered="activeTab === 'queue'" v-for="news in activeWall" :key="news.id" :info="news")
-            pagination(
-              v-model="page"
-              :count="getTotalFeeds"
-              :per-page="feedsPerPage"
-            )
+            //pagination(
+            //  v-model="page"
+            //  :count="getTotalFeeds"
+            //  :per-page="feedsPerPage"
+            //)
       .inner-page__aside
         friends-possible
 </template>
@@ -29,13 +29,18 @@ import ProfileInfo from '@/components/Profile/Info'
 import NewsAdd from '@/components/News/Add'
 import NewsBlock from '@/components/News/Block'
 import ProfileDeleted from '@/pages/User/ProfileDeleted'
+import Pagination from '../../components/pagination/Pagination'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Profile',
-  components: { FriendsPossible, ProfileInfo, NewsAdd, NewsBlock,ProfileDeleted },
+  components: { FriendsPossible, ProfileInfo, NewsAdd, NewsBlock,ProfileDeleted,Pagination  },
   data: () => ({
     activeTab: 'POSTED',
-    is_deleted: false
+    is_deleted: false,
+    page: 1,
+    getTotalFeeds: 6,
+    feedsPerPage: 5,
+    offset: 0
   }),
   computed: {
     ...mapGetters('profile/info', ['getInfo']),
@@ -45,7 +50,7 @@ export default {
     },
     deletedCheck(){
       return this.getInfo.is_deleted;
-    }
+    },
   },
   methods: {
     ...mapActions('users/info', ['apiWall']),
@@ -54,7 +59,9 @@ export default {
     }
   },
   created() {
-    if (this.getInfo) this.apiWall({ id: this.getInfo.id })
+    if (this.getInfo) this.apiWall({ id: this.getInfo.id, })
+    // this.getTotalFeeds = this.apiWall({ id: this.getInfo.id,
+    //   offset: this.offset}).total
   }
 }
 </script>

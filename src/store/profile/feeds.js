@@ -70,7 +70,7 @@ export default {
           })
         } else {
           payload.route === 'News' ?
-            dispatch('apiFeeds',{offset: 1}) :
+            dispatch('apiFeeds',{offset: 0}) :
             dispatch('users/info/apiWall', {
               id: payload.id
             }, {

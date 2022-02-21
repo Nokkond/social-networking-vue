@@ -16,7 +16,7 @@
 
 <script>
 
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 const MAX_PAGES = 20;
 
@@ -27,6 +27,8 @@ export default {
   },
   props: ['page', 'count', 'perPage'],
   computed: {
+    ...mapGetters('profile/info', ['getInfo']),
+    //...mapGetters('users/info', ['getWall', 'getWallPostedLength', 'getWallQueuedLength']),
     maxPages() {
       return MAX_PAGES;
     },
@@ -44,13 +46,14 @@ export default {
   },
   methods: {
     ...mapActions('profile/feeds', ['apiFeeds']),
-
+    ...mapActions('users/info', ['apiWall']),
 
     paginate(page) {
       // if (page && page <= this.pages) {
       //   this.$emit('paginate', page);
       // }
       this.apiFeeds({offset: (page-1)*5})
+      this.apiWall({id: this.getInfo.id, offset: (page-1)*5})
     },
   },
 };
