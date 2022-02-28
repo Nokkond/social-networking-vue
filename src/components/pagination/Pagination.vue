@@ -25,7 +25,7 @@ export default {
     prop: 'page',
     event: 'paginate',
   },
-  props: ['page', 'count', 'perPage'],
+  props: ['page', 'count', 'perPage', 'type'],
   computed: {
     ...mapGetters('profile/info', ['getInfo']),
     //...mapGetters('users/info', ['getWall', 'getWallPostedLength', 'getWallQueuedLength']),
@@ -52,8 +52,9 @@ export default {
       // if (page && page <= this.pages) {
       //   this.$emit('paginate', page);
       // }
-      this.apiFeeds({offset: (page-1)*5})
-      this.apiWall({id: this.getInfo.id, offset: (page-1)*5})
+      console.log('Тип: ', this.type)
+      if (this.type===undefined) this.apiFeeds({offset: (page-1)*5})
+      else this.apiWall({ 'id': this.getInfo.id, 'offset': (page-1)*5, 'itemPerPage': this.perPage, 'type': this.type  })
     },
   },
 };

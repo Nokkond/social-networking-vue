@@ -4,29 +4,29 @@
       .header Статистика
     .statistics
       .stat_block
-        .square
-          .img_stat
-            simple-svg(:filepath="'/static/img/stat-user.svg'").img_plus
-        .title Друзей добавлено
-        .num 73
-      .stat_block
         .square2
           .img_stat
             simple-svg(:filepath="'/static/img/stat-mess.svg'").img_plus
         .title Комментариев оставлено
-        .num 117
+        .num {{getResult.statistics.comments}}
       .stat_block
         .square2
           .img_stat
             simple-svg(:filepath="'/static/img/stat-posts.svg'").img_plus
-        .title Постов опубликовано
-        .num 11
+        .title    Постов опубликовано
+        .num {{getResult.statistics.posts}}
       .stat_block
         .square2
           .img_stat
             simple-svg(:filepath="'/static/img/stat-likes.svg'").img_plus
         .title Лайков поставлено
-        .num 1534
+        .num {{getResult.statistics.likes}}
+      .stat_block
+        .square
+          .img_stat
+            simple-svg(:filepath="'/static/img/stat-user.svg'").img_plus
+        .title Первая публикация
+        .numData {{getResult.statistics.first_publication!=="Нет постов" ? (getResult.statistics.first_publication.split('-')[2][0] + (getResult.statistics.first_publication.split('-')[2][1] !== 'T' ? getResult.statistics.first_publication.split('-')[2][1] : '') + ' ' + months[getResult.statistics.first_publication.split('-')[1]] + ' ' + getResult.statistics.first_publication.split('-')[0] + ' года') : getResult.statistics.first_publication}}
 </template>
 
 <script>
@@ -36,14 +36,39 @@ import FriendsBlock from '@/components/Friends/Block'
 import FriendsRequest from '@/components/Friends/Request'
 export default {
   name: 'Statistics',
+  data: () => ({
+    months: [
+      'Января',
+      'Февраля' ,
+      'Марта' ,
+      'Апреля' ,
+      'Мая' ,
+      'Июня' ,
+      'Июля' ,
+      'Августа' ,
+      'Сентября' ,
+      'Октября' ,
+      'Ноября' ,
+      'Декабря'
+    ],
+  }),
   methods: {
     ...mapActions('profile/statistics', ['apiGetStatistics']),
     ...mapActions('profile/feeds', ['apiFeeds']),
+    getRes() {
+      let arr = this.getResult.statistics.first_publication;
+      return arr[0]
+    }
   },
+  computed: {
+    ...mapGetters('profile/statistics', ['getResult']),
+
+  },
+
   mounted() {
     // if (this.requestFriends.length === 0)
     this.apiGetStatistics();
-    this.apiFeeds({offset: 1})
+    //this.apiFeeds({offset: 1})
   }
 }
 </script>
@@ -103,11 +128,20 @@ export default {
   color: #000;
 }
 .num{
+   text-align center
+   margin-top 10px
+   font-family: Open Sans, Arial, sans-serifSans;
+   font-weight: 300px;
+   font-size: 50px;
+   color: #000;
+ }
+.numData{
   text-align center
   margin-top 10px
   font-family: Open Sans, Arial, sans-serifSans;
-  font-weight: 300px;
-  font-size: 50px;
+  font-weight: 3px;
+  line-height: 23px;
+  font-size: 20px;
   color: #000;
 }
 .header{

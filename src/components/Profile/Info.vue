@@ -1,7 +1,7 @@
 <template lang="pug">
   .profile-info(v-if="info")
-    .profile-info__pic
-      .profile-info__img(:class="{offline: !online && !me}")
+    .profile-info__pic(v-if='!deleted' )
+      .profile-info__img( :class="{offline: !online && !me}")
         img(v-if="info.photo" :src="info.photo" :alt="info.fullName")
         img(v-else src="/static/img/user/2.webp" :alt="info.fullName")
       .profile-info__actions(v-if="!me && meBlocked && !blocked")
@@ -9,37 +9,40 @@
       .profile-info__actions(v-else-if="!me && meBlocked && blocked")
         button-hover(:disable="blocked" @click.native="onSentMessage") Вы заблокированы
         button-hover.profile-info__add(:variant="btnVariantInfo.variant" bordered  @click.native="profileAction") {{btnVariantInfo.text}}
-      .profile-info__actions(v-else-if="!me")
+      .profile-info__actions(v-else-if="!me && !deleted")
         button-hover(:disable="blocked" @click.native="onSentMessage") Написать сообщение
-        button-hover.profile-info__add(:variant="btnVariantInfo.variant" bordered  @click.native="profileAction") {{btnVariantInfo.text}}
+        button-hover.profile-info__add(v-if="!deleted" :variant="btnVariantInfo.variant" bordered  @click.native="profileAction") {{btnVariantInfo.text}}
     .profile-info__main
       router-link.edit(v-if="me" :to="{name: 'Settings'}" v-tooltip.bottom="'Редактировать профиль'")
         simple-svg(:filepath="'/static/img/edit.svg'")
-      span.profile-info__blocked(:class="{blocked}" v-else @click="blockedUser") {{blockedText}}
-      .profile-info__header
+      span.profile-info__blocked( :class="{blocked}" v-else @click="blockedUser" ) {{blockedText}}
+      .profile-info__header(v-if='!deleted')
         h1.profile-info__name {{info.fullName}}
         span.user-status(:class="{online, offline: !online}") {{statusText}}
-      .profile-info__block
+      .profile-info__header(v-if='deleted')
+        h1.profile-info__name Пользователь удален
+        //span.user-status(:class="{online, offline: !online}") {{statusText}}
+      .profile-info__block(v-if='!deleted')
         span.profile-info__title Дата рождения:
         span.profile-info__val(v-if="info.birth_date") {{info.birth_date | moment("D MMMM YYYY") }} ({{ageToStr(info.ages)}})
         span.profile-info__val(v-else) не заполнено
-      .profile-info__block
+      .profile-info__block(v-if='!deleted')
         span.profile-info__title Телефон:
         a.profile-info__val(v-if="info.phone" :href="`tel:${info.phone}`") {{info.phone | phone}}
         a.profile-info__val(v-else) не заполнено
-      .profile-info__block
+      .profile-info__block(v-if='!deleted')
         span.profile-info__title Страна:
         span.profile-info__val(v-if="info.country") {{info.country}}
         span.profile-info__val(v-else) не заполнено
-      .profile-info__block
+      .profile-info__block(v-if='!deleted')
         span.profile-info__title Город:
         span.profile-info__val(v-if="info.city") {{info.city}}
         span.profile-info__val(v-else) не заполнено
-      .profile-info__block
+      .profile-info__block(v-if='!deleted')
         span.profile-info__title О себе:
         span.profile-info__val(v-if="info.about") {{info.about}}
         span.profile-info__val(v-else) не заполнено
-    modal(v-model="modalShow")
+    modal(v-model="modalShow" )
       p(v-if="modalText") {{modalText}}
       template(slot="actions")
         button-hover(v-if="modalType != 'requestReceived'" @click.native.prevent="onConfirm") Да
@@ -60,6 +63,7 @@ export default {
     me: Boolean,
     online: Boolean,
     blocked: Boolean,
+    deleted: Boolean,
     friend: String,
     meBlocked: Boolean,
     info: Object

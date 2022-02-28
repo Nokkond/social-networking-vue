@@ -8,6 +8,7 @@ export default {
     info: null,
     wall: [],
     users: null,
+    totalFeeds: null,
   },
   getters: {
     getInfo(state) {
@@ -38,6 +39,7 @@ export default {
     getWall: s => s.wall,
     getWallPostedLength: s => s.wall.filter(el => el.type === 'POSTED').length,
     getWallQueuedLength: s => s.wall.filter(el => el.type === 'QUEUED').length,
+    getTotalFeeds: s => s.totalFeeds,
   },
   mutations: {
     setInfo: (s, info) => s.info = info,
@@ -48,7 +50,8 @@ export default {
       s.wall.push('dog-nail')
       s.wall.splice(-1,1)
     },
-    setUsersInfo: (s, info) => s.users = info
+    setUsersInfo: (s, info) => s.users = info,
+    setTotalFeeds: (s, totalFeeds) => s.totalFeeds = totalFeeds,
   },
   actions: {
     async apiInfo({
@@ -63,14 +66,15 @@ export default {
     },
     async apiWall({
       commit
-    }, {id, offset, itemPerPage}) {
-      console.log('fetch wall', id)
+    }, payload) {
+      console.log('fetch wall', payload['id'])
       await axios({
-        url: `users/${id}/wall${offset ? '?offset='+offset : ''}${itemPerPage ? '&itemPerPage='+itemPerPage : ''}`,
+        url: `users/${payload['id']}/wall?&itemPerPage=${payload['itemPerPage']}&offset=${payload['offset']}&type=${payload['type']}`,
         method: 'GET'
       }).then(response => {
         commit('setWall', response.data.data)
-      }).catch(error => {})
+        commit('setTotalFeeds', response.data.total)
+      }).catch(error => {console.log('fetch wall', payload[id])})
     },
     async apiWallById({
       commit
@@ -102,7 +106,7 @@ export default {
         url: `users/${id}`,
         method: 'GET'
       }).then(async response => {
-        await dispatch('apiWall', {id})
+        await dispatch('apiWall', {'id':id, 'offset': 0, 'itemPerPage': 10, 'type': 'posted'})
         commit('setUsersInfo', response.data.data)
       }).catch(error => {})
     },

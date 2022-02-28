@@ -4,10 +4,18 @@ export default {
   namespaced: true,
   state: {
     result: {
+      comments: 34,
+      first_publication: null,
+      likes: null,
       posts: [],
-      likes: [],
-      comments: [],
-      users: []
+      //things: []
+      statistics: [{
+        'comments': 0,
+        'first_publication': '2021-11-12T11:55:56.000+00:00',
+        'likes': 0,
+        'posts': 1
+      }
+      ]
     }
   },
   getters: {
@@ -35,7 +43,7 @@ export default {
       }).then(response => {
         commit('setResult', {
           id: 'statistics',
-          value: response.data.data
+          value: response.data
         })
         // dispatch('apiFriends')
       }).catch(error => {console.log(error)})

@@ -70,9 +70,12 @@ export default {
           })
         } else {
           payload.route === 'News' ?
-            dispatch('apiFeeds',{offset: 0}) :
+            dispatch('apiFeeds',{'offset': 0}) :
             dispatch('users/info/apiWall', {
-              id: payload.id
+              'id': payload.id,
+              'offset': 0,
+              'itemPerPage': 5,
+              'type': 'posted'
             }, {
               root: true
             })
@@ -86,10 +89,13 @@ export default {
       }).then(response => {
         payload.route === 'News' ?
           dispatch('apiFeeds',{
-            offset: 1
+            'offset': 0
           }) :
           dispatch('users/info/apiWall', {
-            id: payload.id
+            'id': payload.id,
+            'itemPerPage': 5,
+            'offset': 0,
+            'type':'posted'
           }, {
             root: true
           })

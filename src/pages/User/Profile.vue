@@ -8,17 +8,18 @@
           profile-info(me online :info="getInfo")
         .profile__news
           .profile__tabs
-            span.profile__tab(@click="changeTab('POSTED')" :class="{active: activeTab === 'published'}") Мои публикации ({{getWallPostedLength}})
-            span.profile__tab(@click="changeTab('QUEUED')" :class="{active: activeTab === 'queue'}" v-if="getWallQueuedLength > 0") Отложенные публикации ({{getWallQueuedLength}})
+            span.profile__tab(@click="type='posted';changeTab('POSTED');" :class="{active: activeTab === 'published'}") Мои публикации
+            span.profile__tab(@click="type='queued'; changeTab('QUEUED');" :class="{active: activeTab === 'queue'}" ) Отложенные публикации
           .profile__add
             news-add
           .profile__news-list
             news-block(edit deleted :deffered="activeTab === 'queue'" v-for="news in activeWall" :key="news.id" :info="news")
-            //pagination(
-            //  v-model="page"
-            //  :count="getTotalFeeds"
-            //  :per-page="feedsPerPage"
-            //)
+            pagination(
+              v-model="page"
+              :count="getTotalFeeds"
+              :per-page="feedsPerPage"
+              :type='type'
+            )
       .inner-page__aside
         friends-possible
 </template>
@@ -38,13 +39,15 @@ export default {
     activeTab: 'POSTED',
     is_deleted: false,
     page: 1,
-    getTotalFeeds: 6,
+    //getTotalFeeds: 6,
     feedsPerPage: 5,
-    offset: 0
+    itemPerPage: 5,
+    offset: 0,
+    type: 'posted'
   }),
   computed: {
     ...mapGetters('profile/info', ['getInfo']),
-    ...mapGetters('users/info', ['getWall', 'getWallPostedLength', 'getWallQueuedLength']),
+    ...mapGetters('users/info', ['getWall', 'getWallPostedLength', 'getWallQueuedLength', 'getTotalFeeds']),
     activeWall() {
       return this.getWall.filter(el => el.type === this.activeTab)
     },
@@ -56,10 +59,11 @@ export default {
     ...mapActions('users/info', ['apiWall']),
     changeTab(tab) {
       this.activeTab = tab
+      this.apiWall({ 'id': this.getInfo.id, 'offset': this.offset, 'itemPerPage': this.itemPerPage, 'type': this.type })
     }
   },
   created() {
-    if (this.getInfo) this.apiWall({ id: this.getInfo.id, })
+    if (this.getInfo) this.apiWall({ 'id': this.getInfo.id, 'offset': this.offset, 'itemPerPage': this.itemPerPage, 'type': this.type })
     // this.getTotalFeeds = this.apiWall({ id: this.getInfo.id,
     //   offset: this.offset}).total
   }

@@ -43,14 +43,14 @@ export default {
   methods: {
     ...mapActions('profile/feeds', ['apiFeeds'])
   },
-  created() {
-    this.apiFeeds({offset: 0})
-  },
-  // beforeRouteEnter(to, from, next) {
-  //   next(vm => {
-  //     vm.apiFeeds({offset: 0})
-  //   })
+  // created() {
+  //   this.apiFeeds({offset: 0})
   // },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.apiFeeds()
+    })
+  },
   watch: {
     page() {
       this.apiFeeds();

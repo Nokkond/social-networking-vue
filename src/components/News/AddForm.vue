@@ -165,8 +165,10 @@ export default {
             hours: this.time.substring(0, 2)
           }).valueOf()
       }).then(() => {
-        //this.apiFeeds({offset: 0});
+        //console.log('ого ',id);
         this.$emit('submit-complete');
+        //console.log('ого ',id);
+        //this.apiWall({ 'id': id, 'offset': 0, 'itemPerPage': 5, 'type': 'posted' });
       })
     },
     openLinkMenu(attrs) {

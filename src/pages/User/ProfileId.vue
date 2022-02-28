@@ -6,13 +6,14 @@
           :info="getUsersInfo"
           :me="getUsersInfo.me"
           :meBlocked="getUsersInfo.is_you_blocked"
+          :deleted="getUsersInfo.is_deleted"
           :blocked="getUsersInfo.is_blocked"
           :friend="getUsersInfo.is_friend"
           :online="getUsersInfo.is_onlined")
       .profile__news
-        .profile__tabs
+        .profile__tabs(v-if="!getUsersInfo.is_deleted")
           span.profile__tab.active Публикации {{getUsersInfo.first_name}} ({{getWall.length}})
-        .profile__news-list
+        .profile__news-list(v-if="!getUsersInfo.is_deleted")
           news-block(v-for="news in getWall" :key="news.id" :info="news")
     .inner-page__aside
       friends-possible
