@@ -55,10 +55,10 @@ export default {
   methods: {
     ...mapActions('profile/statistics', ['apiGetStatistics']),
     ...mapActions('profile/feeds', ['apiFeeds']),
-    getRes() {
-      let arr = this.getResult.statistics.first_publication;
-      return arr[0]
-    }
+    // getRes() {
+    //   let arr = this.getResult.statistics.first_publication;
+    //   return arr[0]
+    // }
   },
   computed: {
     ...mapGetters('profile/statistics', ['getResult']),
